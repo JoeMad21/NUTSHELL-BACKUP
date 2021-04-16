@@ -28,27 +28,7 @@ PATTERN [a-zA-Z\/\.?*~]+
 ESCAPE [a-zA-Z\/\.\\\<\>\&\|\"]
 %%
 
-{QUOTE}                         { BEGIN(expect_string); }
-<expect_string>$\{              { BEGIN(expect_pathing); return META; }
-<expect_string>{NOTQUOTE}*      { yylval.WORD = new std::string(yytext);
-wordCount++;
-return WORD;
-}
-<expect_string>{QUOTE}          { BEGIN(INITIAL); }
-
-
-[ \t\r]	
-2>&1				{ return APP_STDERR; }
->>				{ return APP_STDOUT; }
-2>				{ return OW_STDERR; }
-[>]				{ return OW_STDOUT; }
-[<]				{ return OW_STDIN; }
-&				{ return BACK; }
-\|				{ return PIPE; }
--[A-Za-z0-9]+			{ wordCount++; yylval.FLAG = new std::string(yytext); return FLAG; }	
-{ESCAPE} { BEGIN(INITIAL); std::string* temp = new std::string(yytext); temp->erase(remove(temp->begin(), temp->end(), '\\'), temp->end());
-yylval.WORD = temp; return WORD; }
-$\{                     	{ BEGIN(expect_pathing); return META; }
+{QUOTE}\$\{|\$\{                     	{ BEGIN(expect_pathing); return META; }
 <expect_pathing>{WORD}* 	{
     auto it = env_mapper.variables.find(yytext);
     auto it_backup = alias_mapper.aliases.find(yytext);
@@ -72,7 +52,27 @@ $\{                     	{ BEGIN(expect_pathing); return META; }
     }
     processing_word = false;
 }
-<expect_pathing>\} {BEGIN(INITIAL); return META;}
+<expect_pathing>\}|\}{QUOTE} {BEGIN(INITIAL); return META;}
+
+{QUOTE}                         { BEGIN(expect_string); }
+<expect_string>{NOTQUOTE}*      { yylval.WORD = new std::string(yytext);
+wordCount++;
+return WORD;
+}
+<expect_string>{QUOTE}          { BEGIN(INITIAL); }
+
+
+[ \t\r]	
+2>&1				{ return APP_STDERR; }
+>>				{ return APP_STDOUT; }
+2>				{ return OW_STDERR; }
+[>]				{ return OW_STDOUT; }
+[<]				{ return OW_STDIN; }
+&				{ return BACK; }
+\|				{ return PIPE; }
+-[A-Za-z0-9]+			{ wordCount++; yylval.FLAG = new std::string(yytext); return FLAG; }	
+{ESCAPE} { BEGIN(INITIAL); std::string* temp = new std::string(yytext); temp->erase(remove(temp->begin(), temp->end(), '\\'), temp->end());
+yylval.WORD = temp; return WORD; }
 setenv				{ wordCount++; yylval.SETENV = new std::string(yytext); return SETENV; }
 cd		                { wordCount++; yylval.CD = new std::string(yytext); return CD; }
 printenv            		{ wordCount++; yylval.PRINTENV = new std::string(yytext); return PRINTENV; }

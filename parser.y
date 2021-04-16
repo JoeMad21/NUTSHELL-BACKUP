@@ -426,6 +426,7 @@ bool map_loop_check(std::map<std::string, std::string>::iterator it_original,  s
 		it_travel = the_map.find(it_travel->second);
 		map_loop_check(it_original, it_travel, the_map);
 	}
+	return NULL;
 }
 
 int alias_print_nutshell()

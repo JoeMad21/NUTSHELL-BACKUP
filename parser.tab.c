@@ -732,16 +732,16 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  2
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   59
+#define YYLAST   61
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  27
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  11
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  44
+#define YYNRULES  45
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  69
+#define YYNSTATES  71
 
 #define YYUNDEFTOK  2
 #define YYMAXUTOK   281
@@ -791,11 +791,11 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int16 yyrline[] =
 {
-       0,   224,   224,   227,   230,   231,   232,   277,   278,   279,
-     280,   281,   282,   283,   284,   287,   294,   297,   302,   307,
-     312,   317,   320,   326,   332,   340,   341,   342,   345,   346,
-     347,   348,   349,   350,   353,   354,   355,   358,   361,   362,
-     365,   366,   369,   370,   375
+       0,   224,   224,   227,   230,   231,   232,   276,   277,   278,
+     279,   280,   281,   282,   283,   286,   293,   296,   301,   306,
+     311,   316,   319,   325,   331,   337,   340,   341,   342,   345,
+     346,   347,   348,   349,   350,   353,   354,   355,   358,   361,
+     362,   365,   366,   369,   370,   375
 };
 #endif
 
@@ -838,13 +838,14 @@ static const yytype_int16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-     -22,    33,   -22,   -22,    23,    -2,   -22,     7,   -22,   -13,
-      19,    -8,    25,   -22,   -22,     1,   -22,   -22,     5,     9,
-     -22,   -22,     7,   -22,     7,    11,    17,    29,    41,     7,
-       7,   -22,   -22,    39,    27,   -22,    35,   -22,   -22,   -22,
-     -22,   -22,   -22,   -22,   -22,    -2,    -2,   -22,   -22,     7,
-       7,     7,     7,   -22,   -22,    42,     3,   -22,   -22,   -22,
-     -22,   -22,   -22,   -22,   -22,   -22,   -22,   -22,   -22
+     -22,     2,   -22,   -22,    32,    19,   -22,    35,   -22,   -11,
+       4,    -2,    37,   -22,   -22,     5,   -22,   -22,    11,    29,
+     -22,   -22,    35,   -22,    35,    34,    43,    44,    45,    35,
+      35,   -22,    35,   -22,   -13,    39,   -22,    41,   -22,   -22,
+     -22,   -22,   -22,   -22,   -22,   -22,    19,    19,   -22,   -22,
+      35,    35,    35,    35,   -22,   -22,   -22,    18,    17,   -22,
+     -22,   -22,   -22,   -22,   -22,   -22,   -22,   -22,   -22,   -22,
+     -22
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -852,13 +853,14 @@ static const yytype_int8 yypact[] =
      means the default is an error.  */
 static const yytype_int8 yydefact[] =
 {
-       2,     0,     1,     5,    27,    42,    14,     0,     4,    33,
-      42,    39,     0,    13,     3,     0,    25,     7,     0,     0,
-       9,    37,     0,    22,     0,     0,     0,     0,     0,     0,
-       0,    15,     6,    28,     0,     8,     0,    10,    35,    38,
-      11,    40,    41,    12,    26,    42,    42,    21,    16,     0,
-       0,     0,     0,    24,    23,     0,     0,    32,    34,    36,
-      43,    44,    19,    17,    18,    20,    31,    30,    29
+       2,     0,     1,     5,    28,    43,    14,     0,     4,    34,
+      43,    40,     0,    13,     3,     0,    26,     7,     0,     0,
+       9,    38,     0,    22,     0,     0,     0,     0,     0,     0,
+       0,    15,     0,     6,    29,     0,     8,     0,    10,    36,
+      39,    11,    41,    42,    12,    27,    43,    43,    21,    16,
+       0,     0,     0,     0,    24,    23,    25,     0,     0,    33,
+      35,    37,    44,    45,    19,    17,    18,    20,    32,    31,
+      30
 };
 
   /* YYPGOTO[NTERM-NUM].  */
@@ -871,7 +873,7 @@ static const yytype_int8 yypgoto[] =
   /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-      -1,     1,    14,    32,    17,    35,    37,    20,    40,    43,
+      -1,     1,    14,    33,    17,    36,    38,    20,    41,    44,
       21
 };
 
@@ -880,22 +882,24 @@ static const yytype_int8 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-      38,    47,    33,    48,    18,    34,    19,    39,    53,    54,
-      22,    23,    24,    25,    26,    27,    44,    28,    29,    67,
-      45,    68,    30,    31,    46,    18,    49,    19,    62,    63,
-      64,    65,    50,     2,    36,    60,    61,     3,    15,    16,
-      41,    42,    56,    57,    51,     4,     5,     6,     7,     8,
-      58,    59,     9,    10,    11,    12,    52,    55,    66,    13
+      39,    48,     2,    49,    34,    57,     3,    35,    54,    55,
+      18,    56,    19,    40,     4,     5,     6,     7,     8,    37,
+      45,     9,    10,    11,    12,    18,    46,    19,    13,    64,
+      65,    66,    67,    69,    68,    70,    62,    63,    22,    23,
+      24,    25,    26,    27,    47,    28,    29,    15,    16,    50,
+      30,    31,    42,    43,    58,    59,    60,    61,    51,    52,
+      53,    32
 };
 
 static const yytype_int8 yycheck[] =
 {
-      10,    22,    15,    24,     6,    18,     8,    15,    29,    30,
-       3,     4,     5,     6,     7,     8,    15,    10,    11,    16,
-      15,    18,    15,    16,    15,     6,    15,     8,    49,    50,
-      51,    52,    15,     0,    15,    45,    46,     4,    15,    16,
-      15,    16,    15,    16,    15,    12,    13,    14,    15,    16,
-      15,    16,    19,    20,    21,    22,    15,    18,    16,    26
+      10,    22,     0,    24,    15,    18,     4,    18,    29,    30,
+       6,    32,     8,    15,    12,    13,    14,    15,    16,    15,
+      15,    19,    20,    21,    22,     6,    15,     8,    26,    50,
+      51,    52,    53,    16,    16,    18,    46,    47,     3,     4,
+       5,     6,     7,     8,    15,    10,    11,    15,    16,    15,
+      15,    16,    15,    16,    15,    16,    15,    16,    15,    15,
+      15,    26
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
@@ -905,10 +909,11 @@ static const yytype_int8 yystos[] =
        0,    28,     0,     4,    12,    13,    14,    15,    16,    19,
       20,    21,    22,    26,    29,    15,    16,    31,     6,     8,
       34,    37,     3,     4,     5,     6,     7,     8,    10,    11,
-      15,    16,    30,    15,    18,    32,    15,    33,    37,    15,
-      35,    15,    16,    36,    15,    15,    15,    30,    30,    15,
-      15,    15,    15,    30,    30,    18,    15,    16,    15,    16,
-      37,    37,    30,    30,    30,    30,    16,    16,    18
+      15,    16,    26,    30,    15,    18,    32,    15,    33,    37,
+      15,    35,    15,    16,    36,    15,    15,    15,    30,    30,
+      15,    15,    15,    15,    30,    30,    30,    18,    15,    16,
+      15,    16,    37,    37,    30,    30,    30,    30,    16,    16,
+      18
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
@@ -916,9 +921,9 @@ static const yytype_int8 yyr1[] =
 {
        0,    27,    28,    28,    29,    29,    29,    29,    29,    29,
       29,    29,    29,    29,    29,    30,    30,    30,    30,    30,
-      30,    30,    30,    30,    30,    31,    31,    31,    32,    32,
-      32,    32,    32,    32,    33,    33,    33,    34,    35,    35,
-      36,    36,    37,    37,    37
+      30,    30,    30,    30,    30,    30,    31,    31,    31,    32,
+      32,    32,    32,    32,    32,    33,    33,    33,    34,    35,
+      35,    36,    36,    37,    37,    37
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
@@ -926,9 +931,9 @@ static const yytype_int8 yyr2[] =
 {
        0,     2,     0,     2,     1,     1,     2,     2,     2,     2,
        2,     2,     2,     1,     1,     1,     2,     3,     3,     3,
-       3,     2,     1,     2,     2,     1,     2,     0,     1,     3,
-       3,     3,     2,     0,     2,     1,     2,     1,     1,     0,
-       1,     1,     0,     3,     3
+       3,     2,     1,     2,     2,     2,     1,     2,     0,     1,
+       3,     3,     3,     2,     0,     2,     1,     2,     1,     1,
+       0,     1,     1,     0,     3,     3
 };
 
 
@@ -1628,19 +1633,19 @@ yyreduce:
                                         { 
 
 }
-#line 1632 "parser.tab.c"
+#line 1637 "parser.tab.c"
     break;
 
   case 4:
 #line 230 "parser.y"
                                         { printPrompt();}
-#line 1638 "parser.tab.c"
+#line 1643 "parser.tab.c"
     break;
 
   case 5:
 #line 231 "parser.y"
                                         {}
-#line 1644 "parser.tab.c"
+#line 1649 "parser.tab.c"
     break;
 
   case 6:
@@ -1666,7 +1671,7 @@ if((!quoted) && (!processing_word) && end_input)
 		cmd_table[i][argc_list[i]] = NULL;
 	}
 
-	/*	
+	/*
 	printf("cmd_num: %d\n", cmd_num);
 	for (int i = 0; i < cmd_num; i++){
 		printf("command %d has %d args\n",i,argc_list[i]);
@@ -1679,7 +1684,6 @@ if((!quoted) && (!processing_word) && end_input)
 	//printf("%s\n", out_file);
 	printf("\n");
 	*/
-
 	execute();
 
 	printPrompt();
@@ -1690,17 +1694,17 @@ if((!quoted) && (!processing_word) && end_input)
 }
 
 }
-#line 1694 "parser.tab.c"
+#line 1698 "parser.tab.c"
     break;
 
   case 14:
-#line 284 "parser.y"
+#line 283 "parser.y"
                                         { printf("%s", "thanks for using nutshell\n"); free(cmd_table); free(argc_list); exit(0); }
-#line 1700 "parser.tab.c"
+#line 1704 "parser.tab.c"
     break;
 
   case 15:
-#line 287 "parser.y"
+#line 286 "parser.y"
                                         { 
 //printf("debug 1 cmd_num %d\n", cmd_num);
 argc_list = (int*)realloc(argc_list, (cmd_num + 1) * sizeof(int));
@@ -1708,222 +1712,222 @@ cmd_table = (char***)realloc(cmd_table, (cmd_num + 1) * sizeof(char**));
 cmd_table[cmd_num] = (char**)malloc(ind * sizeof(char*)); 
 end_input = true;      
 }
-#line 1712 "parser.tab.c"
+#line 1716 "parser.tab.c"
     break;
 
   case 16:
-#line 294 "parser.y"
+#line 293 "parser.y"
                                         {
 app_stderr = true;
 }
-#line 1720 "parser.tab.c"
+#line 1724 "parser.tab.c"
     break;
 
   case 17:
-#line 297 "parser.y"
+#line 296 "parser.y"
                                         {
 ow_stderr = true;
 out_file = (char*)malloc(strlen((yyvsp[-1].WORD)->c_str()) * sizeof(char));
 strcpy(out_file, (char*)(yyvsp[-1].WORD)->c_str());
 }
-#line 1730 "parser.tab.c"
+#line 1734 "parser.tab.c"
     break;
 
   case 18:
-#line 302 "parser.y"
+#line 301 "parser.y"
                                         {
 ow_stdout = true;
 out_file = (char*)malloc(strlen((yyvsp[-1].WORD)->c_str()) * sizeof(char));
 strcpy(out_file, (char*)(yyvsp[-1].WORD)->c_str());
 }
-#line 1740 "parser.tab.c"
+#line 1744 "parser.tab.c"
     break;
 
   case 19:
-#line 307 "parser.y"
+#line 306 "parser.y"
                                         {
 app_stdout = true;
 out_file = (char*)malloc(strlen((yyvsp[-1].WORD)->c_str()) * sizeof(char));
 strcpy(out_file, (char*)(yyvsp[-1].WORD)->c_str());
 }
-#line 1750 "parser.tab.c"
+#line 1754 "parser.tab.c"
     break;
 
   case 20:
-#line 312 "parser.y"
+#line 311 "parser.y"
                                         {
 ow_stdin = true;
 in_file = (char*)malloc(strlen((yyvsp[-1].WORD)->c_str()) * sizeof(char));
 strcpy(in_file, (char*)(yyvsp[-1].WORD)->c_str());
 }
-#line 1760 "parser.tab.c"
+#line 1764 "parser.tab.c"
     break;
 
   case 21:
-#line 317 "parser.y"
+#line 316 "parser.y"
                                         {
 back = true;
 }
-#line 1768 "parser.tab.c"
+#line 1772 "parser.tab.c"
     break;
 
   case 22:
-#line 320 "parser.y"
+#line 319 "parser.y"
                                         {
 //printf("debug 2 cmd_num %d\n", cmd_num);
 argc_list = (int*)realloc(argc_list, (cmd_num + 1) * sizeof(int));
 cmd_table = (char***)realloc(cmd_table, (cmd_num + 1) * sizeof(char**));
 cmd_table[cmd_num] = (char**)malloc(ind * sizeof(char*)); 
 }
-#line 1779 "parser.tab.c"
+#line 1783 "parser.tab.c"
     break;
 
   case 23:
-#line 326 "parser.y"
+#line 325 "parser.y"
                                         {
 cmd_table[cmd_num] = (char**)realloc(cmd_table[cmd_num],  (ind + 1) * sizeof(char*));
 cmd_table[cmd_num][ind] = (char*)malloc((strlen((yyvsp[-1].WORD)->c_str()) + 1) * sizeof(char));
 strcpy(cmd_table[cmd_num][ind], (char*)(yyvsp[-1].WORD)->c_str());
 ind ++;
 }
-#line 1790 "parser.tab.c"
+#line 1794 "parser.tab.c"
     break;
 
   case 24:
-#line 332 "parser.y"
+#line 331 "parser.y"
                                         {
 cmd_table[cmd_num] = (char**)realloc(cmd_table[cmd_num],  (ind + 1) * sizeof(char*));
 cmd_table[cmd_num][ind] = (char*)malloc((strlen((yyvsp[-1].FLAG)->c_str()) + 1) * sizeof(char));
 strcpy(cmd_table[cmd_num][ind], (char*)(yyvsp[-1].FLAG)->c_str());
 ind ++;
 }
-#line 1801 "parser.tab.c"
-    break;
-
-  case 25:
-#line 340 "parser.y"
-                                        { printf("Error: syntax error.\n"); }
-#line 1807 "parser.tab.c"
+#line 1805 "parser.tab.c"
     break;
 
   case 26:
-#line 341 "parser.y"
-                                        { env_nutshell((yyvsp[-1].WORD),(yyvsp[0].WORD)); }
-#line 1813 "parser.tab.c"
+#line 340 "parser.y"
+                                        { printf("Error: syntax error.\n"); }
+#line 1811 "parser.tab.c"
     break;
 
   case 27:
-#line 342 "parser.y"
-                                        { printf("Error: please enter a variable and a value.\n"); }
-#line 1819 "parser.tab.c"
+#line 341 "parser.y"
+                                        { env_nutshell((yyvsp[-1].WORD),(yyvsp[0].WORD)); }
+#line 1817 "parser.tab.c"
     break;
 
   case 28:
-#line 345 "parser.y"
-                                        { cd_nutshell((yyvsp[0].WORD)); }
-#line 1825 "parser.tab.c"
+#line 342 "parser.y"
+                                        { printf("Error: please enter a variable and a value.\n"); }
+#line 1823 "parser.tab.c"
     break;
 
   case 29:
-#line 346 "parser.y"
-                                        { cd_nutshell((yyvsp[-1].WORD)); }
-#line 1831 "parser.tab.c"
+#line 345 "parser.y"
+                                        { cd_nutshell((yyvsp[0].WORD)); }
+#line 1829 "parser.tab.c"
     break;
 
   case 30:
-#line 347 "parser.y"
-                                        { printf("Error: syntax error.\n"); }
-#line 1837 "parser.tab.c"
+#line 346 "parser.y"
+                                        { cd_nutshell((yyvsp[-1].WORD)); }
+#line 1835 "parser.tab.c"
     break;
 
   case 31:
-#line 348 "parser.y"
+#line 347 "parser.y"
                                         { printf("Error: syntax error.\n"); }
-#line 1843 "parser.tab.c"
+#line 1841 "parser.tab.c"
     break;
 
   case 32:
-#line 349 "parser.y"
+#line 348 "parser.y"
                                         { printf("Error: syntax error.\n"); }
-#line 1849 "parser.tab.c"
+#line 1847 "parser.tab.c"
     break;
 
   case 33:
-#line 350 "parser.y"
-                                        { printf("Error: enter a directory.\n"); }
-#line 1855 "parser.tab.c"
+#line 349 "parser.y"
+                                        { printf("Error: syntax error.\n"); }
+#line 1853 "parser.tab.c"
     break;
 
   case 34:
-#line 353 "parser.y"
-                                        { alias_nutshell((yyvsp[-1].WORD),(yyvsp[0].WORD)); }
-#line 1861 "parser.tab.c"
+#line 350 "parser.y"
+                                        { printf("Error: enter a directory.\n"); }
+#line 1859 "parser.tab.c"
     break;
 
   case 35:
-#line 354 "parser.y"
-                                        { alias_print_nutshell(); }
-#line 1867 "parser.tab.c"
+#line 353 "parser.y"
+                                        { alias_nutshell((yyvsp[-1].WORD),(yyvsp[0].WORD)); }
+#line 1865 "parser.tab.c"
     break;
 
   case 36:
-#line 355 "parser.y"
-                                        { printf("Error: please enter another value.\n"); }
-#line 1873 "parser.tab.c"
+#line 354 "parser.y"
+                                        { alias_print_nutshell(); }
+#line 1871 "parser.tab.c"
     break;
 
   case 37:
-#line 358 "parser.y"
-                                        { env_print_nutshell();}
-#line 1879 "parser.tab.c"
+#line 355 "parser.y"
+                                        { printf("Error: please enter another value.\n"); }
+#line 1877 "parser.tab.c"
     break;
 
   case 38:
-#line 361 "parser.y"
-                                        { unenv_nutshell((yyvsp[0].WORD)); }
-#line 1885 "parser.tab.c"
+#line 358 "parser.y"
+                                        { env_print_nutshell();}
+#line 1883 "parser.tab.c"
     break;
 
   case 39:
-#line 362 "parser.y"
-                                        { printf("Error: enter an alias."); }
-#line 1891 "parser.tab.c"
+#line 361 "parser.y"
+                                        { unenv_nutshell((yyvsp[0].WORD)); }
+#line 1889 "parser.tab.c"
     break;
 
   case 40:
-#line 365 "parser.y"
-                                        { unalias_nutshell((yyvsp[0].WORD)); }
-#line 1897 "parser.tab.c"
+#line 362 "parser.y"
+                                        { printf("Error: enter an alias."); }
+#line 1895 "parser.tab.c"
     break;
 
   case 41:
-#line 366 "parser.y"
-                                        { printf("Error: enter an alias."); }
-#line 1903 "parser.tab.c"
+#line 365 "parser.y"
+                                        { unalias_nutshell((yyvsp[0].WORD)); }
+#line 1901 "parser.tab.c"
     break;
 
-  case 43:
+  case 42:
+#line 366 "parser.y"
+                                        { printf("Error: enter an alias."); }
+#line 1907 "parser.tab.c"
+    break;
+
+  case 44:
 #line 370 "parser.y"
                                         { 
 app_stdout = true;
 out_file = (char*)malloc(strlen((yyvsp[-1].WORD)->c_str()) * sizeof(char));
 strcpy(out_file, (char*)(yyvsp[-1].WORD)->c_str());
 }
-#line 1913 "parser.tab.c"
+#line 1917 "parser.tab.c"
     break;
 
-  case 44:
+  case 45:
 #line 375 "parser.y"
                                         {
 ow_stdout = true;
 out_file = (char*)malloc(strlen((yyvsp[-1].WORD)->c_str()) * sizeof(char));
 strcpy(out_file, (char*)(yyvsp[-1].WORD)->c_str());
 }
-#line 1923 "parser.tab.c"
+#line 1927 "parser.tab.c"
     break;
 
 
-#line 1927 "parser.tab.c"
+#line 1931 "parser.tab.c"
 
       default: break;
     }
@@ -2204,6 +2208,7 @@ bool map_loop_check(std::map<std::string, std::string>::iterator it_original,  s
 		it_travel = the_map.find(it_travel->second);
 		map_loop_check(it_original, it_travel, the_map);
 	}
+	return NULL;
 }
 
 int alias_print_nutshell()
