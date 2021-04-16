@@ -1,6 +1,19 @@
 Features not implemented:
 
+
 Features implemented:
+1. Built-in commands
+2. Non-built-in commands
+3. Redirecting I/O with NBIC
+4. Using pipes with NBIC
+5. Running NBI in background
+6. Using Pipes an I/O redirect with NBIC
+7. Enviroment variable expansion
+8. Alias expansion
+9. Wilcard matching
+10. Error messages
+11. Tilde expansion
+12. File name completion
 
 README:
 JOSEPH:
