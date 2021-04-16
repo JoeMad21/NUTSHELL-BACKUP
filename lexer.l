@@ -53,29 +53,25 @@ $\{                     	{ BEGIN(expect_pathing); return META; }
     auto it_backup = alias_mapper.aliases.find(yytext);
     if (it != env_mapper.variables.end() && !processing_word)
     {
-        BEGIN(INITIAL);
         wordCount++;
         yylval.WORD = new std::string(it->second);
         return WORD;
     }
     else if(it_backup != alias_mapper.aliases.end())
     {
-        BEGIN(INITIAL);
         wordCount++;
         yylval.WORD = new std::string(it_backup->second);
         return WORD;
     }
     else if(!processing_word)
     {
-        BEGIN(INITIAL);
         wordCount++;
         yylval.WORD = new std::string(yytext);
         return WORD;
     }
     processing_word = false;
-    BEGIN(INITIAL);
 }
-<expect_pathing>\} {return META;}
+<expect_pathing>\} {BEGIN(INITIAL); return META;}
 setenv				{ wordCount++; yylval.SETENV = new std::string(yytext); return SETENV; }
 cd		                { wordCount++; yylval.CD = new std::string(yytext); return CD; }
 printenv            		{ wordCount++; yylval.PRINTENV = new std::string(yytext); return PRINTENV; }
