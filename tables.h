@@ -13,6 +13,7 @@
 #include <vector>
 #include <map>
 #include <algorithm>
+#include <glob.h>
 
 struct ENV_MAP
 {

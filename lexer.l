@@ -25,7 +25,7 @@ NOTQUOTE [\"]
 DIGIT [0-9]
 WORD [a-zA-Z\/\.\\\<\>\|\"\\\&]+
 PATTERN [a-zA-Z\/\.?*~]+ 
-ESCAPE [a-zA-Z\/\.\\\<\>\]
+ESCAPE [a-zA-Z\/\.\\\<\>\&\|\"]
 QUOTED [a-zA-Z\/\.:()<>\|\\& ]+
 IO >>|<<|>|<|2>>|2>
 %%
@@ -35,7 +35,8 @@ IO >>|<<|>|<|2>>|2>
 <expect_string>$\{             	{ BEGIN(expect_pathing); return META; }
 <expect_string>{QUOTE}*		{ quoted, in_string = false; BEGIN(INITIAL); }
 
-
+{ESCAPE} { BEGIN(INITIAL); std::string* temp = new std::string(yytext); temp->erase(remove(temp->begin(), temp->end(), '\\'), temp->end());
+yylval.WORD = temp; return WORD; }
 
 [ \t\r]	
 2>&1				{ return APP_STDERR; }
