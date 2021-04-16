@@ -250,7 +250,6 @@ if((!quoted) && (!processing_word) && end_input)
 		cmd_table[i][argc_list[i]] = NULL;
 	}
 
-	/*	
 	printf("cmd_num: %d\n", cmd_num);
 	for (int i = 0; i < cmd_num; i++){
 		printf("command %d has %d args\n",i,argc_list[i]);
@@ -262,7 +261,6 @@ if((!quoted) && (!processing_word) && end_input)
 	printf("ow_stdin: %d\n", ow_stdin);
 	//printf("%s\n", out_file);
 	printf("\n");
-	*/
 
 	execute();
 

@@ -21,7 +21,7 @@ extern int split;
 %x escape_character
 
 QUOTE ["]
-NOTQUOTE [\"]
+NOTQUOTE [^"]
 DIGIT [0-9]
 WORD [a-zA-Z\/\.\\\<\>\|\"\\\&]+
 PATTERN [a-zA-Z\/\.?*~]+ 
@@ -30,10 +30,14 @@ QUOTED [a-zA-Z\/\.:()<>\|\\& ]+
 IO >>|<<|>|<|2>>|2>
 %%
 
-{QUOTE}				{ if(!in_string) {quoted, in_string = true; BEGIN(expect_string); }else {in_string = false;} }
-<expect_string>{QUOTED}*      	{ yylval.WORD = new std::string(yytext); return WORD; }
-<expect_string>$\{             	{ BEGIN(expect_pathing); return META; }
-<expect_string>{QUOTE}*		{ quoted, in_string = false; BEGIN(INITIAL); }
+{QUOTE}                         { BEGIN(expect_string); return META; }
+<expect_string>$\{              { BEGIN(expect_pathing); return META; }
+<expect_string>{NOTQUOTE}*      {
+yylval.WORD = new std::string(yytext);
+wordCount++;
+return WORD;
+}
+<expect_string>{QUOTE}          { BEGIN(INITIAL); return META; }
 
 {ESCAPE} { BEGIN(INITIAL); std::string* temp = new std::string(yytext); temp->erase(remove(temp->begin(), temp->end(), '\\'), temp->end());
 yylval.WORD = temp; return WORD; }
