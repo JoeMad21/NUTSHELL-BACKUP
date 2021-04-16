@@ -23,10 +23,18 @@ extern int split;
 QUOTE ["]
 NOTQUOTE [^"]
 DIGIT [0-9]
-WORD [a-zA-Z\/\.\\\<\>\|\\\&]+
+WORD [a-zA-Z\/\.\\\|\\\&]+
 PATTERN [a-zA-Z\/\.?*~]+ 
 ESCAPE [a-zA-Z\/\.\\\<\>\&\|\"]
 %%
+
+2>&1				{ return APP_STDERR; }
+>>				{ return APP_STDOUT; }
+2>				{ return OW_STDERR; }
+[>]				{ return OW_STDOUT; }
+[<]				{ return OW_STDIN; }
+&				{ return BACK; }
+\|				{ return PIPE; }
 
 {QUOTE}\$\{|\$\{                     	{ BEGIN(expect_pathing); return META; }
 <expect_pathing>{WORD}* 	{
@@ -63,13 +71,6 @@ return WORD;
 
 
 [ \t\r]	
-2>&1				{ return APP_STDERR; }
->>				{ return APP_STDOUT; }
-2>				{ return OW_STDERR; }
-[>]				{ return OW_STDOUT; }
-[<]				{ return OW_STDIN; }
-&				{ return BACK; }
-\|				{ return PIPE; }
 -[A-Za-z0-9]+			{ wordCount++; yylval.FLAG = new std::string(yytext); return FLAG; }	
 {ESCAPE} { BEGIN(INITIAL); std::string* temp = new std::string(yytext); temp->erase(remove(temp->begin(), temp->end(), '\\'), temp->end());
 yylval.WORD = temp; return WORD; }
