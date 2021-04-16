@@ -81,6 +81,8 @@ int alias_nutshell(std::string* variable, std::string* word);
 int alias_print_nutshell(void);
 int unalias_nutshell(std::string* variable);
 
+bool map_loop_check(std::map<std::string, std::string>::iterator it_original,  std::map<std::string, std::string>::iterator it_travel,  std::map<std::string, std::string>& the_map);
+
 int env_nutshell(std::string* variable, std::string* word);
 int env_print_nutshell(void);
 int unenv_nutshell(std::string* variable);
@@ -275,7 +277,7 @@ void printPrompt(){
 }
 
 
-#line 279 "parser.tab.c"
+#line 281 "parser.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -318,11 +320,11 @@ void printPrompt(){
 extern int yydebug;
 #endif
 /* "%code requires" blocks.  */
-#line 210 "parser.y"
+#line 212 "parser.y"
 
 #include <string>
 
-#line 326 "parser.tab.c"
+#line 328 "parser.tab.c"
 
 /* Token type.  */
 #ifndef YYTOKENTYPE
@@ -411,7 +413,7 @@ union YYSTYPE
   std::string* PATH;
   /* NOT_A_TOKEN  */
   std::string* NOT_A_TOKEN;
-#line 415 "parser.tab.c"
+#line 417 "parser.tab.c"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -789,11 +791,11 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int16 yyrline[] =
 {
-       0,   222,   222,   225,   228,   229,   230,   275,   276,   277,
-     278,   279,   280,   281,   282,   285,   292,   295,   300,   305,
-     310,   315,   318,   324,   330,   338,   339,   340,   343,   344,
-     345,   346,   347,   348,   351,   352,   353,   356,   359,   360,
-     363,   364,   367,   368,   373
+       0,   224,   224,   227,   230,   231,   232,   277,   278,   279,
+     280,   281,   282,   283,   284,   287,   294,   297,   302,   307,
+     312,   317,   320,   326,   332,   340,   341,   342,   345,   346,
+     347,   348,   349,   350,   353,   354,   355,   358,   361,   362,
+     365,   366,   369,   370,   375
 };
 #endif
 
@@ -1622,27 +1624,27 @@ yyreduce:
   switch (yyn)
     {
   case 2:
-#line 222 "parser.y"
+#line 224 "parser.y"
                                         { 
 
 }
-#line 1630 "parser.tab.c"
+#line 1632 "parser.tab.c"
     break;
 
   case 4:
-#line 228 "parser.y"
+#line 230 "parser.y"
                                         { printPrompt();}
-#line 1636 "parser.tab.c"
+#line 1638 "parser.tab.c"
     break;
 
   case 5:
-#line 229 "parser.y"
+#line 231 "parser.y"
                                         {}
-#line 1642 "parser.tab.c"
+#line 1644 "parser.tab.c"
     break;
 
   case 6:
-#line 230 "parser.y"
+#line 232 "parser.y"
                                         {
 //printf("debug 3\n");
 cmd_table[cmd_num] = (char**)realloc(cmd_table[cmd_num], (ind + 1) * sizeof(char*));
@@ -1688,17 +1690,17 @@ if((!quoted) && (!processing_word) && end_input)
 }
 
 }
-#line 1692 "parser.tab.c"
+#line 1694 "parser.tab.c"
     break;
 
   case 14:
-#line 282 "parser.y"
+#line 284 "parser.y"
                                         { printf("%s", "thanks for using nutshell\n"); free(cmd_table); free(argc_list); exit(0); }
-#line 1698 "parser.tab.c"
+#line 1700 "parser.tab.c"
     break;
 
   case 15:
-#line 285 "parser.y"
+#line 287 "parser.y"
                                         { 
 //printf("debug 1 cmd_num %d\n", cmd_num);
 argc_list = (int*)realloc(argc_list, (cmd_num + 1) * sizeof(int));
@@ -1706,222 +1708,222 @@ cmd_table = (char***)realloc(cmd_table, (cmd_num + 1) * sizeof(char**));
 cmd_table[cmd_num] = (char**)malloc(ind * sizeof(char*)); 
 end_input = true;      
 }
-#line 1710 "parser.tab.c"
+#line 1712 "parser.tab.c"
     break;
 
   case 16:
-#line 292 "parser.y"
+#line 294 "parser.y"
                                         {
 app_stderr = true;
 }
-#line 1718 "parser.tab.c"
+#line 1720 "parser.tab.c"
     break;
 
   case 17:
-#line 295 "parser.y"
+#line 297 "parser.y"
                                         {
 ow_stderr = true;
 out_file = (char*)malloc(strlen((yyvsp[-1].WORD)->c_str()) * sizeof(char));
 strcpy(out_file, (char*)(yyvsp[-1].WORD)->c_str());
 }
-#line 1728 "parser.tab.c"
+#line 1730 "parser.tab.c"
     break;
 
   case 18:
-#line 300 "parser.y"
+#line 302 "parser.y"
                                         {
 ow_stdout = true;
 out_file = (char*)malloc(strlen((yyvsp[-1].WORD)->c_str()) * sizeof(char));
 strcpy(out_file, (char*)(yyvsp[-1].WORD)->c_str());
 }
-#line 1738 "parser.tab.c"
+#line 1740 "parser.tab.c"
     break;
 
   case 19:
-#line 305 "parser.y"
+#line 307 "parser.y"
                                         {
 app_stdout = true;
 out_file = (char*)malloc(strlen((yyvsp[-1].WORD)->c_str()) * sizeof(char));
 strcpy(out_file, (char*)(yyvsp[-1].WORD)->c_str());
 }
-#line 1748 "parser.tab.c"
+#line 1750 "parser.tab.c"
     break;
 
   case 20:
-#line 310 "parser.y"
+#line 312 "parser.y"
                                         {
 ow_stdin = true;
 in_file = (char*)malloc(strlen((yyvsp[-1].WORD)->c_str()) * sizeof(char));
 strcpy(in_file, (char*)(yyvsp[-1].WORD)->c_str());
 }
-#line 1758 "parser.tab.c"
+#line 1760 "parser.tab.c"
     break;
 
   case 21:
-#line 315 "parser.y"
+#line 317 "parser.y"
                                         {
 back = true;
 }
-#line 1766 "parser.tab.c"
+#line 1768 "parser.tab.c"
     break;
 
   case 22:
-#line 318 "parser.y"
+#line 320 "parser.y"
                                         {
 //printf("debug 2 cmd_num %d\n", cmd_num);
 argc_list = (int*)realloc(argc_list, (cmd_num + 1) * sizeof(int));
 cmd_table = (char***)realloc(cmd_table, (cmd_num + 1) * sizeof(char**));
 cmd_table[cmd_num] = (char**)malloc(ind * sizeof(char*)); 
 }
-#line 1777 "parser.tab.c"
+#line 1779 "parser.tab.c"
     break;
 
   case 23:
-#line 324 "parser.y"
+#line 326 "parser.y"
                                         {
 cmd_table[cmd_num] = (char**)realloc(cmd_table[cmd_num],  (ind + 1) * sizeof(char*));
 cmd_table[cmd_num][ind] = (char*)malloc((strlen((yyvsp[-1].WORD)->c_str()) + 1) * sizeof(char));
 strcpy(cmd_table[cmd_num][ind], (char*)(yyvsp[-1].WORD)->c_str());
 ind ++;
 }
-#line 1788 "parser.tab.c"
+#line 1790 "parser.tab.c"
     break;
 
   case 24:
-#line 330 "parser.y"
+#line 332 "parser.y"
                                         {
 cmd_table[cmd_num] = (char**)realloc(cmd_table[cmd_num],  (ind + 1) * sizeof(char*));
 cmd_table[cmd_num][ind] = (char*)malloc((strlen((yyvsp[-1].FLAG)->c_str()) + 1) * sizeof(char));
 strcpy(cmd_table[cmd_num][ind], (char*)(yyvsp[-1].FLAG)->c_str());
 ind ++;
 }
-#line 1799 "parser.tab.c"
+#line 1801 "parser.tab.c"
     break;
 
   case 25:
-#line 338 "parser.y"
+#line 340 "parser.y"
                                         { printf("Error: syntax error.\n"); }
-#line 1805 "parser.tab.c"
+#line 1807 "parser.tab.c"
     break;
 
   case 26:
-#line 339 "parser.y"
+#line 341 "parser.y"
                                         { env_nutshell((yyvsp[-1].WORD),(yyvsp[0].WORD)); }
-#line 1811 "parser.tab.c"
+#line 1813 "parser.tab.c"
     break;
 
   case 27:
-#line 340 "parser.y"
+#line 342 "parser.y"
                                         { printf("Error: please enter a variable and a value.\n"); }
-#line 1817 "parser.tab.c"
+#line 1819 "parser.tab.c"
     break;
 
   case 28:
-#line 343 "parser.y"
+#line 345 "parser.y"
                                         { cd_nutshell((yyvsp[0].WORD)); }
-#line 1823 "parser.tab.c"
+#line 1825 "parser.tab.c"
     break;
 
   case 29:
-#line 344 "parser.y"
+#line 346 "parser.y"
                                         { cd_nutshell((yyvsp[-1].WORD)); }
-#line 1829 "parser.tab.c"
+#line 1831 "parser.tab.c"
     break;
 
   case 30:
-#line 345 "parser.y"
+#line 347 "parser.y"
                                         { printf("Error: syntax error.\n"); }
-#line 1835 "parser.tab.c"
+#line 1837 "parser.tab.c"
     break;
 
   case 31:
-#line 346 "parser.y"
+#line 348 "parser.y"
                                         { printf("Error: syntax error.\n"); }
-#line 1841 "parser.tab.c"
+#line 1843 "parser.tab.c"
     break;
 
   case 32:
-#line 347 "parser.y"
+#line 349 "parser.y"
                                         { printf("Error: syntax error.\n"); }
-#line 1847 "parser.tab.c"
+#line 1849 "parser.tab.c"
     break;
 
   case 33:
-#line 348 "parser.y"
+#line 350 "parser.y"
                                         { printf("Error: enter a directory.\n"); }
-#line 1853 "parser.tab.c"
+#line 1855 "parser.tab.c"
     break;
 
   case 34:
-#line 351 "parser.y"
+#line 353 "parser.y"
                                         { alias_nutshell((yyvsp[-1].WORD),(yyvsp[0].WORD)); }
-#line 1859 "parser.tab.c"
+#line 1861 "parser.tab.c"
     break;
 
   case 35:
-#line 352 "parser.y"
+#line 354 "parser.y"
                                         { alias_print_nutshell(); }
-#line 1865 "parser.tab.c"
+#line 1867 "parser.tab.c"
     break;
 
   case 36:
-#line 353 "parser.y"
+#line 355 "parser.y"
                                         { printf("Error: please enter another value.\n"); }
-#line 1871 "parser.tab.c"
+#line 1873 "parser.tab.c"
     break;
 
   case 37:
-#line 356 "parser.y"
+#line 358 "parser.y"
                                         { env_print_nutshell();}
-#line 1877 "parser.tab.c"
+#line 1879 "parser.tab.c"
     break;
 
   case 38:
-#line 359 "parser.y"
+#line 361 "parser.y"
                                         { unenv_nutshell((yyvsp[0].WORD)); }
-#line 1883 "parser.tab.c"
+#line 1885 "parser.tab.c"
     break;
 
   case 39:
-#line 360 "parser.y"
+#line 362 "parser.y"
                                         { printf("Error: enter an alias."); }
-#line 1889 "parser.tab.c"
+#line 1891 "parser.tab.c"
     break;
 
   case 40:
-#line 363 "parser.y"
+#line 365 "parser.y"
                                         { unalias_nutshell((yyvsp[0].WORD)); }
-#line 1895 "parser.tab.c"
+#line 1897 "parser.tab.c"
     break;
 
   case 41:
-#line 364 "parser.y"
+#line 366 "parser.y"
                                         { printf("Error: enter an alias."); }
-#line 1901 "parser.tab.c"
+#line 1903 "parser.tab.c"
     break;
 
   case 43:
-#line 368 "parser.y"
+#line 370 "parser.y"
                                         { 
 app_stdout = true;
 out_file = (char*)malloc(strlen((yyvsp[-1].WORD)->c_str()) * sizeof(char));
 strcpy(out_file, (char*)(yyvsp[-1].WORD)->c_str());
 }
-#line 1911 "parser.tab.c"
+#line 1913 "parser.tab.c"
     break;
 
   case 44:
-#line 373 "parser.y"
+#line 375 "parser.y"
                                         {
 ow_stdout = true;
 out_file = (char*)malloc(strlen((yyvsp[-1].WORD)->c_str()) * sizeof(char));
 strcpy(out_file, (char*)(yyvsp[-1].WORD)->c_str());
 }
-#line 1921 "parser.tab.c"
+#line 1923 "parser.tab.c"
     break;
 
 
-#line 1925 "parser.tab.c"
+#line 1927 "parser.tab.c"
 
       default: break;
     }
@@ -2153,7 +2155,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 379 "parser.y"
+#line 381 "parser.y"
 
 
 int alias_nutshell(std::string* variable, std::string* word)
@@ -2168,13 +2170,40 @@ int alias_nutshell(std::string* variable, std::string* word)
   	if (ret.second==false) {
        		std::cout << "That alias is already in use" << std::endl;
 	}
+	auto it_original = alias_mapper.aliases.find(*variable);
+	auto it_travel = alias_mapper.aliases.find(*word);
+	auto& the_map = alias_mapper.aliases;
+	bool is_loop;
 	for (std::map<std::string,std::string>::iterator it=alias_mapper.aliases.begin(); it!=alias_mapper.aliases.end(); ++it)
 	if(it->second == *variable)
 	{
-		alias_mapper.aliases.erase(*variable);
-		std::cout << "Illegal alias, would cause infinite loop." << std::endl;
+		is_loop = map_loop_check(it_original, it_travel, the_map);
 	}
+
+	if(is_loop)
+	{
+		std::cout << "This alias would cause an infinite loop." << std::endl;
+		alias_mapper.aliases.erase(*variable);
+	}
+
 	return 1;
+}
+
+bool map_loop_check(std::map<std::string, std::string>::iterator it_original,  std::map<std::string, std::string>::iterator it_travel,  std::map<std::string, std::string>& the_map)
+{
+	if(it_travel == the_map.end())
+	{
+		return false;
+	}
+	else if((it_travel->first == it_original->first) &&(it_travel->second == it_original->second))
+	{
+		return true;
+	}
+	else
+	{
+		it_travel = the_map.find(it_travel->second);
+		map_loop_check(it_original, it_travel, the_map);
+	}
 }
 
 int alias_print_nutshell()
@@ -2224,6 +2253,21 @@ int env_nutshell(std::string* variable, std::string* word)
   	ret = env_mapper.variables.insert ( std::pair<std::string,std::string>(*variable, *word) );
   	if (ret.second==false) {
     		std::cout << "That name is already in use" << std::endl;
+	}
+	auto it_original = env_mapper.variables.find(*variable);
+	auto it_travel = env_mapper.variables.find(*word);
+	auto& the_map = env_mapper.variables;
+	bool is_loop;
+	for (std::map<std::string,std::string>::iterator it=env_mapper.variables.begin(); it!=env_mapper.variables.end(); ++it)
+	if(it->second == *variable)
+	{
+		is_loop = map_loop_check(it_original, it_travel, the_map);
+	}
+
+	if(is_loop)
+	{
+		std::cout << "This alias would cause an infinite loop." << std::endl;
+		env_mapper.variables.erase(*variable);
 	}
 	return 1;
 }

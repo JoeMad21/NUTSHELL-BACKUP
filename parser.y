@@ -12,6 +12,8 @@ int alias_nutshell(std::string* variable, std::string* word);
 int alias_print_nutshell(void);
 int unalias_nutshell(std::string* variable);
 
+bool map_loop_check(std::map<std::string, std::string>::iterator it_original,  std::map<std::string, std::string>::iterator it_travel,  std::map<std::string, std::string>& the_map);
+
 int env_nutshell(std::string* variable, std::string* word);
 int env_print_nutshell(void);
 int unenv_nutshell(std::string* variable);
@@ -390,13 +392,40 @@ int alias_nutshell(std::string* variable, std::string* word)
   	if (ret.second==false) {
        		std::cout << "That alias is already in use" << std::endl;
 	}
+	auto it_original = alias_mapper.aliases.find(*variable);
+	auto it_travel = alias_mapper.aliases.find(*word);
+	auto& the_map = alias_mapper.aliases;
+	bool is_loop;
 	for (std::map<std::string,std::string>::iterator it=alias_mapper.aliases.begin(); it!=alias_mapper.aliases.end(); ++it)
 	if(it->second == *variable)
 	{
-		alias_mapper.aliases.erase(*variable);
-		std::cout << "Illegal alias, would cause infinite loop." << std::endl;
+		is_loop = map_loop_check(it_original, it_travel, the_map);
 	}
+
+	if(is_loop)
+	{
+		std::cout << "This alias would cause an infinite loop." << std::endl;
+		alias_mapper.aliases.erase(*variable);
+	}
+
 	return 1;
+}
+
+bool map_loop_check(std::map<std::string, std::string>::iterator it_original,  std::map<std::string, std::string>::iterator it_travel,  std::map<std::string, std::string>& the_map)
+{
+	if(it_travel == the_map.end())
+	{
+		return false;
+	}
+	else if((it_travel->first == it_original->first) &&(it_travel->second == it_original->second))
+	{
+		return true;
+	}
+	else
+	{
+		it_travel = the_map.find(it_travel->second);
+		map_loop_check(it_original, it_travel, the_map);
+	}
 }
 
 int alias_print_nutshell()
@@ -446,6 +475,21 @@ int env_nutshell(std::string* variable, std::string* word)
   	ret = env_mapper.variables.insert ( std::pair<std::string,std::string>(*variable, *word) );
   	if (ret.second==false) {
     		std::cout << "That name is already in use" << std::endl;
+	}
+	auto it_original = env_mapper.variables.find(*variable);
+	auto it_travel = env_mapper.variables.find(*word);
+	auto& the_map = env_mapper.variables;
+	bool is_loop;
+	for (std::map<std::string,std::string>::iterator it=env_mapper.variables.begin(); it!=env_mapper.variables.end(); ++it)
+	if(it->second == *variable)
+	{
+		is_loop = map_loop_check(it_original, it_travel, the_map);
+	}
+
+	if(is_loop)
+	{
+		std::cout << "This alias would cause an infinite loop." << std::endl;
+		env_mapper.variables.erase(*variable);
 	}
 	return 1;
 }

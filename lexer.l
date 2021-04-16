@@ -124,7 +124,6 @@ bye|exit|quit|\Z		{ wordCount++; yylval.BYE = new std::string(yytext); return BY
     BEGIN(INITIAL);
 }
 
-~				{ yylval.TILDE = new std::string(yytext); return TILDE; }
 {PATTERN}*     			{ 
     std::string pattern = std::string(yytext);
     int success = glob(pattern.c_str(), GLOB_TILDE, NULL, &glob_result);

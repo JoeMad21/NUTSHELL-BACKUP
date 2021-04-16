@@ -835,7 +835,7 @@ YY_DECL
 		}
 
 	{
-#line 30 "lexer.l"
+#line 31 "lexer.l"
 
 
 #line 842 "lex.yy.c"
@@ -897,77 +897,77 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 32 "lexer.l"
-{ if(!in_string) {quoted, in_string = true; BEGIN(expect_string); }else {in_string = false;} return META;}
+#line 33 "lexer.l"
+{ if(!in_string) {quoted, in_string = true; BEGIN(expect_string); }else {in_string = false;} }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 33 "lexer.l"
+#line 34 "lexer.l"
 { yylval.WORD = new std::string(yytext); return WORD; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 34 "lexer.l"
+#line 35 "lexer.l"
 { BEGIN(expect_pathing); return META; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 35 "lexer.l"
+#line 36 "lexer.l"
 { quoted, in_string = false; BEGIN(INITIAL); }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 37 "lexer.l"
+#line 40 "lexer.l"
 
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 38 "lexer.l"
+#line 41 "lexer.l"
 { return APP_STDERR; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 39 "lexer.l"
+#line 42 "lexer.l"
 { return APP_STDOUT; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 40 "lexer.l"
+#line 43 "lexer.l"
 { return OW_STDERR; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 41 "lexer.l"
+#line 44 "lexer.l"
 { return OW_STDOUT; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 42 "lexer.l"
+#line 45 "lexer.l"
 { return OW_STDIN; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 43 "lexer.l"
+#line 46 "lexer.l"
 { return BACK; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 44 "lexer.l"
+#line 47 "lexer.l"
 { return PIPE; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 45 "lexer.l"
+#line 48 "lexer.l"
 { wordCount++; yylval.FLAG = new std::string(yytext); return FLAG; }	
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 46 "lexer.l"
+#line 49 "lexer.l"
 { BEGIN(expect_pathing); return META; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 47 "lexer.l"
+#line 50 "lexer.l"
 {
     auto it = env_mapper.variables.find(yytext);
     auto it_backup = alias_mapper.aliases.find(yytext);
@@ -998,57 +998,57 @@ YY_RULE_SETUP
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 74 "lexer.l"
+#line 77 "lexer.l"
 {return META;}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 75 "lexer.l"
+#line 78 "lexer.l"
 { wordCount++; yylval.SETENV = new std::string(yytext); return SETENV; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 76 "lexer.l"
+#line 79 "lexer.l"
 { wordCount++; yylval.CD = new std::string(yytext); return CD; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 77 "lexer.l"
+#line 80 "lexer.l"
 { wordCount++; yylval.PRINTENV = new std::string(yytext); return PRINTENV; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 78 "lexer.l"
+#line 81 "lexer.l"
 { aliasing = true; wordCount++; yylval.ALIAS = new std::string(yytext); return ALIAS; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 79 "lexer.l"
+#line 82 "lexer.l"
 { wordCount++; BEGIN(expect_unsetenv); yylval.UNSETENV = new std::string(yytext); return UNSETENV; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 80 "lexer.l"
+#line 83 "lexer.l"
 { BEGIN(INITIAL); yylval.WORD = new std::string(yytext); return WORD;}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 81 "lexer.l"
+#line 84 "lexer.l"
 { wordCount++; BEGIN(expect_unalias); yylval.UNALIAS = new std::string(yytext); return UNALIAS;}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 82 "lexer.l"
+#line 85 "lexer.l"
 { wordCount++; BEGIN(INITIAL); yylval.WORD = new std::string(yytext); return WORD;}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 83 "lexer.l"
+#line 86 "lexer.l"
 { wordCount++; yylval.BYE = new std::string(yytext); return BYE; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 84 "lexer.l"
+#line 87 "lexer.l"
 { 
     BEGIN(escape_processing);
     if(std::string(yytext).find('\\') != 0)
@@ -1091,12 +1091,12 @@ YY_RULE_SETUP
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 124 "lexer.l"
+#line 127 "lexer.l"
 { yylval.TILDE = new std::string(yytext); return TILDE; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 125 "lexer.l"
+#line 128 "lexer.l"
 { 
     std::string pattern = std::string(yytext);
     int success = glob(pattern.c_str(), GLOB_TILDE, NULL, &glob_result);
@@ -1127,22 +1127,22 @@ YY_RULE_SETUP
 case 29:
 /* rule 29 can match eol */
 YY_RULE_SETUP
-#line 152 "lexer.l"
+#line 155 "lexer.l"
 { wordCount = 0; yylval.NEW_LINE = new std::string(yytext); return NEW_LINE; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 153 "lexer.l"
+#line 156 "lexer.l"
 { yylval.NULL_TOKEN = new std::string(yytext); return NULL_TOKEN; }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 154 "lexer.l"
+#line 157 "lexer.l"
 return NOT_A_TOKEN;
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 155 "lexer.l"
+#line 158 "lexer.l"
 ECHO;
 	YY_BREAK
 #line 1149 "lex.yy.c"
@@ -2156,4 +2156,4 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 155 "lexer.l"
+#line 158 "lexer.l"
