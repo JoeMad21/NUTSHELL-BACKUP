@@ -23,24 +23,19 @@ extern int split;
 QUOTE ["]
 NOTQUOTE [^"]
 DIGIT [0-9]
-WORD [a-zA-Z\/\.\\\<\>\|\"\\\&]+
+WORD [a-zA-Z\/\.\\\<\>\|\\\&]+
 PATTERN [a-zA-Z\/\.?*~]+ 
 ESCAPE [a-zA-Z\/\.\\\<\>\&\|\"]
-QUOTED [a-zA-Z\/\.:()<>\|\\& ]+
-IO >>|<<|>|<|2>>|2>
 %%
 
-{QUOTE}                         { BEGIN(expect_string); return META; }
+{QUOTE}                         { BEGIN(expect_string); }
 <expect_string>$\{              { BEGIN(expect_pathing); return META; }
-<expect_string>{NOTQUOTE}*      {
-yylval.WORD = new std::string(yytext);
+<expect_string>{NOTQUOTE}*      { yylval.WORD = new std::string(yytext);
 wordCount++;
 return WORD;
 }
-<expect_string>{QUOTE}          { BEGIN(INITIAL); return META; }
+<expect_string>{QUOTE}          { BEGIN(INITIAL); }
 
-{ESCAPE} { BEGIN(INITIAL); std::string* temp = new std::string(yytext); temp->erase(remove(temp->begin(), temp->end(), '\\'), temp->end());
-yylval.WORD = temp; return WORD; }
 
 [ \t\r]	
 2>&1				{ return APP_STDERR; }
@@ -51,6 +46,8 @@ yylval.WORD = temp; return WORD; }
 &				{ return BACK; }
 \|				{ return PIPE; }
 -[A-Za-z0-9]+			{ wordCount++; yylval.FLAG = new std::string(yytext); return FLAG; }	
+{ESCAPE} { BEGIN(INITIAL); std::string* temp = new std::string(yytext); temp->erase(remove(temp->begin(), temp->end(), '\\'), temp->end());
+yylval.WORD = temp; return WORD; }
 $\{                     	{ BEGIN(expect_pathing); return META; }
 <expect_pathing>{WORD}* 	{
     auto it = env_mapper.variables.find(yytext);

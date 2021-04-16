@@ -250,6 +250,7 @@ if((!quoted) && (!processing_word) && end_input)
 		cmd_table[i][argc_list[i]] = NULL;
 	}
 
+	/*
 	printf("cmd_num: %d\n", cmd_num);
 	for (int i = 0; i < cmd_num; i++){
 		printf("command %d has %d args\n",i,argc_list[i]);
@@ -261,7 +262,7 @@ if((!quoted) && (!processing_word) && end_input)
 	printf("ow_stdin: %d\n", ow_stdin);
 	//printf("%s\n", out_file);
 	printf("\n");
-
+	*/
 	execute();
 
 	printPrompt();
@@ -333,6 +334,7 @@ cmd_table[cmd_num][ind] = (char*)malloc((strlen($1->c_str()) + 1) * sizeof(char)
 strcpy(cmd_table[cmd_num][ind], (char*)$1->c_str());
 ind ++;
 }
+	| NOT_A_TOKEN command
 ;
 
 setenv:	  NEW_LINE			{ printf("Error: syntax error.\n"); }
